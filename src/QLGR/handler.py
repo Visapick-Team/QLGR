@@ -24,7 +24,6 @@ class RabbitMQHandler(logging.Handler):
 
     def emit(self, record):
         message = f"{record.levelname}: {record.msg}"
-        print('emit called')
         self.channel.basic_publish(exchange=self.exchange, routing_key='logs', body=message)
 
     def close(self):
